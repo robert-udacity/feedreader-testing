@@ -95,10 +95,11 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         it('loads at least one feed entry', function() {
+         it('loads at least one feed entry', function(done) {
             const feed = document.querySelector('.feed');
 
             expect(feed.children.length).toBeGreaterThan(0);
+            done();
          });
     });
 
