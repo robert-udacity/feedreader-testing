@@ -104,9 +104,30 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe("New Feed Selection", function() {
+        const feed = document.querySelector('.feed');
+        let preFeedContent = '';
+        let postFeedContent = '';
+
+        beforeEach(function(done) {
+          // loadFeed is async so store the feed's first item's innerText
+          // through the callback
+          loadFeed(0, function() {
+            preFeedContent = feed.children[0].innerText;
+          });
+          loadFeed(1, done);
+        });
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         it("changes content when new feed loaded", function(done) {
+           postFeedContent = feed.children[0].innerText;
+           // Compare the first feed's first chlld to the second feed's first
+           // child - if they're different, then new content was loaded
+           expect(preFeedContent).not.toEqual(postFeedContent);
+           done();
+         });
+    });
 }());
